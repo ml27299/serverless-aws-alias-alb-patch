@@ -27,8 +27,8 @@ functions:
               - POST
 ```
 
-Because of the way priorities work, you must supply a unique priority number for each alias. One way to do this is to make a js file
-can reference variables from it.
+Because of the way priorities work, you must supply a unique priority number for each alias. One way to do this is to make a js file which you
+can reference variables from.
 
 priority.js
 ```javascript
