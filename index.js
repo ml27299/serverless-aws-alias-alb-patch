@@ -2,7 +2,7 @@ const crypto = require("crypto");
 const isObject = (obj) => Object.prototype.toString.call(obj) === '[object Object]';
 const isArray = Array.isArray;
 
-const required = (param) => throw (`Missing param: ${param}`);
+const required = (param) => {throw (`Missing param: ${param}`)};
 
 class AlbAlias {
 
