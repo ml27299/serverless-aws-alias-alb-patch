@@ -20,6 +20,10 @@ class AlbAlias {
         return this.provider.naming.getNormalizedFunctionName(this.serverless.service.provider.alias);
     }
 
+    get name() {
+        return this.serverless.service.service;
+    }
+
     generateMd5Hash(val) {
         return crypto.createHash('md5').update(val).digest("hex");
     }
@@ -97,6 +101,7 @@ class AlbAlias {
     }
 
     run() {
+
         const aliasStack = this.serverless.service.provider.compiledCloudFormationAliasTemplate;
         for (const functionName in this.serverless.service.functions) {
             if (this.serverless.service.functions.hasOwnProperty(functionName) === false) continue;
@@ -124,7 +129,7 @@ class AlbAlias {
                 };
                 if (!targetGroups[key].DependsOn) targetGroups[key].DependsOn = [];
                 this.targetGroups[key].DependsOn.push(`${normalizedFunctionName}Alias`);
-                this.targetGroups[key].Properties.Name = this.generateMd5Hash(`${normalizedFunctionName}${this.alias}${key}`);
+                this.targetGroups[key].Properties.Name = this.generateMd5Hash(`${normalizedFunctionName}${this.alias}${key}${this.name}`);
             }
 
             for (let key in permissionResources) {
